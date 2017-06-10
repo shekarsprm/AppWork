@@ -49,5 +49,9 @@
 	<bean id="promoCode" class="com.iws.appportal.dao.PromoCodeDaoImpl">
 	 <property name="jdbcTemplate" ref="jdbcTemplate"/>
 	</bean>
+	
+	<bean id="homeDaoImpl" class="com.iws.appportal.dao.HomeDaoImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
 		
 </beans>

@@ -1,13 +1,21 @@
 package com.iws.appportal.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.iws.appportal.dto.CampaignsDTO;
+import com.iws.appportal.dto.ProductsDTO;
+import com.iws.appportal.exceptions.ServiceException;
+import com.iws.appportal.service.LoginServiceIF;
 import com.iws.appportal.utils.PropertiesUtility;
 
 @Controller
@@ -15,6 +23,10 @@ public class LoginController {
 
 	private static final Logger logger = Logger.getLogger(LoginController.class);
 
+	@Autowired
+	private LoginServiceIF loginServiceIF;
+	
+		
 	@RequestMapping(value = "/")
 	public String index(HttpServletRequest req, HttpServletResponse res) {
 
@@ -32,6 +44,29 @@ public class LoginController {
 		String validateCheck = ValidationUtils.loginValidation(username, password);
 		if ("0".equalsIgnoreCase(validateCheck)) {
 
+			//loginServiceIF
+			
+			/*UserDTO userDTO=loginServiceIF.userPromoUserProfile(req.getParameter("Username"));
+			   HttpSession session = req.getSession();
+            session.setAttribute("username", userDTO.getUsername());
+            session.setAttribute("userId", userDTO.getUserId());
+            */
+			
+				try {
+
+					List<CampaignsDTO> listOfCampaigns=loginServiceIF.getCampaigns();
+					List<ProductsDTO> fullList = new ArrayList<ProductsDTO>();
+					fullList = loginServiceIF.getProductList();
+
+					req.setAttribute("fullList", fullList);
+					req.setAttribute("listOfCampaigns", listOfCampaigns);
+				
+					return "promocodegenerate";
+				} catch (ServiceException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					
 		} else {
 
 			String value = PropertiesUtility.getPropertiesValue(validateCheck);

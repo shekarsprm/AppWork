@@ -42,5 +42,10 @@
 			<property name="dataSource" ref="dataSource"></property>
 	</bean>
 
+
+	<bean id="promoCode" class="com.iws.appportal.dao.PromoCodeDaoImpl">
+	<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
 </beans>
 
