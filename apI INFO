@@ -1,0 +1,43 @@
+{
+"campName" :"" ,
+"productName" :"" ,
+"clientId":"" ,
+"clientCode":"" ,
+"appCode":""
+"msisdn":""
+"shortCode":""
+"username":""
+"password":""
+"inpFied01":""
+"inpFied02":""
+"inpFied03":""
+
+}
+
+
+statusCode:2
+statusMessage: Username is null or empty
+responseStatusTime:2017:06:06:10:10:10
+
+
+Step 0: Validate The Input Params
+Step 1:        Validate the Username and Password
+
+Step 2:
+        Validate the  Camp
+
+step 3: Validate The  Produ
+
+Step 4: Validate the ShortCode
+
+Step 5: Validate ClientCode and Client ID
+
+Step 6: Checking the AppCode Exists or not
+
+Step 7: Redem The Code  make status 0
+
+Step 8: insert the redem record into another table 
+app_Code_redem table
+
+Step 9: Sent SmS to user based on the ShortCode (Here USE GMAIL EMAIL)
+
